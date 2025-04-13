@@ -6,6 +6,8 @@
     <title>Document</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+   
+
 <style>
        .mavi{
         background-color: blue;
@@ -18,7 +20,11 @@
         .kirmizi{
         background-color: red;
         height: 100px;
-}
+        cursor: pointer; /* Tıklanabilir olduğunu belirtmek için */
+        }
+        .image-preview {
+            width: 100%; /* Modalda tam genişlikte olacak */
+        }
 </style>
 </head>
 
@@ -26,7 +32,7 @@
     
 <div class ="container">
     <div class="row mt-2 gy-4">
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2"><div class="kirmizi"></div></div>
+        
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2"><div class="kirmizi"></div></div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2"><div class="kirmizi"></div></div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2"><div class="kirmizi"></div></div>
@@ -35,12 +41,47 @@
     </div>
     
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Büyük Resim</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" class="image-preview" src="" alt="Büyük Resim"> 
+            </div>
+            <div class="modal-footer">
+           
+            </div>
+        </div>
+    </div>
+</div>
 
+<script>
+   
 
+    function showImage(imageSrc) {
+        currentImage = imageSrc; // Tıklanan kutunun resmini ayarlama
+        const modalImage = document.getElementById('modalImage');
+        modalImage.src = currentImage; // Modalda gösterilecek resmi ayarlama
+    }
+
+    // Modal açıldığında varsayılan resmi göster
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const modal = document.getElementById('exampleModal');
+        modal.addEventListener('show.bs.modal', () => {
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = currentImage; // Modal açıldığında mevcut resmi göster
+        });
+    });
+</script>
 
 
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+
 </body>
 </html>
